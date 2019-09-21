@@ -36,11 +36,10 @@ namespace SampleApplication1.Controllers
             {
                 try
                 {
-                    var t = _appUpdaterService.BeginUpdateProcessAsync(versionNumber, () => _updaterCommunicationService.ShutdownApp());
+                    Action onSuccess = () => _updaterCommunicationService.ShutdownApp();
+                    var t = _appUpdaterService.BeginUpdateProcessAsync(versionNumber, onSuccess);
                     Task.Factory.StartNew(() => t.GetAwaiter().GetResult());
 
-                    //var cntxt = await _updater.DownloadFilesAsync(versionNumber);
-                    //var t = _updater.CompleteUpdateAsync(() => { Program.Shutdown(); });
                 }
                 catch (Exception ex)
                 {

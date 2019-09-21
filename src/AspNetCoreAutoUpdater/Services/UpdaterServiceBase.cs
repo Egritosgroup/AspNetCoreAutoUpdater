@@ -90,17 +90,9 @@ namespace AspNetCoreAutoUpdater
             //do update
             if (CurrentOS == OSPlatform.Windows)
             {
-                using (var s = this.GetType().Assembly.GetManifestResourceStream("AspNetCoreAutoUpdater.Resources.AspNetCoreAutoUpdater.IISHandler.zip"))
+                using (var s = typeof(UpdaterServiceBase).Assembly.GetManifestResourceStream("AspNetCoreAutoUpdater.Resources.AspNetCoreAutoUpdater.IISHandler.zip"))
                 {
                     ExtractFromStream(s, fileInfo.Directory.FullName);
-                    //using (var archive = new ZipArchive(s))
-                    //{
-                    //    foreach (var entry in archive.Entries)
-                    //    {
-                    //        entry.ExtractToFile(Path.Combine(fileInfo.Directory.FullName, entry.Name), true);
-                    //    }
-                    //    //archive.ExtractToDirectory(fileInfo.Directory.FullName, true);
-                    //}
                 }
                 var webconfig = Path.Combine(fileInfo.Directory.FullName, "web.config");
                 if (File.Exists(webconfig))
@@ -136,10 +128,9 @@ namespace AspNetCoreAutoUpdater
                 }
 
             }
+
             LogInfo("Program.Shutdown");
-            //_logger.LogInformation("Program.Shutdown");
-            onSuccess.Invoke();
-            //Program.Shutdown();
+            onSuccess.Invoke();  //on the app ---> Program.Shutdown();
         }
 
 
