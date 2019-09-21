@@ -17,10 +17,18 @@ namespace AspNetCoreAutoUpdater
         /// <param name="version"></param>
         /// <param name="onSuccess"></param>
         /// <returns></returns>
-        Task UpdateAsync(string version, Action onSuccess);
-
+        Task BeginUpdateProcessAsync(string version, Action onSuccess);
+        /// <summary>
+        /// CompleteUpdate after files are downloaded
+        /// </summary>
+        /// <param name="onSuccess"></param>
+        /// <returns></returns>
         Task CompleteUpdateAsync(Action onSuccess);
-
+        /// <summary>
+        /// DownloadFiles
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
         Task<DownloadContext> DownloadFilesAsync(string version);
 
 

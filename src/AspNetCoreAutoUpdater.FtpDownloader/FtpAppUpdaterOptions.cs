@@ -11,6 +11,7 @@ namespace AspNetCoreAutoUpdater.FtpDownloader
         /// by default o fpt xristis pou exoume mpainei ston fakelo me ta versions kateu8ian. auto einai an 8eloume na allaksoume
         /// </summary>
         public string FtpFolderHostingTheApp { get; set; } = "";
+        public bool TrustClientCertificate { get; set; } = true;
 
     }
 }
