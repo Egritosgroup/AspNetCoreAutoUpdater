@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,6 +10,10 @@
     <ApplicationIcon />
     <StartupObject />
 
+    <IsShippingPackage>true</IsShippingPackage>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+
   </PropertyGroup>
 
   <Target Name="PackNugets" AfterTargets="Pack">
@@ -18,11 +22,31 @@
   </Target>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Fileproviders.Embedded" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Include="StaticResources\**\*" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="StaticResources\updating.html" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <ProjectReference Include="..\AspNetCoreAutoUpdater\AspNetCoreAutoUpdater.csproj" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <Folder Include="StaticResources\updating\" />
   </ItemGroup>
+
+  
 </Project>

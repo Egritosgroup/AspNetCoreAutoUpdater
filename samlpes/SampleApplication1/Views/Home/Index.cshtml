@@ -1,0 +1,27 @@
+﻿@inject IUpdaterCommunicationService updaterCommunicationService
+@{
+    ViewData["Title"] = "Home Page";
+
+    var currentVersion = updaterCommunicationService.GetCurrentVersion();
+    var nextVersion = updaterCommunicationService.GetNextVersion();
+
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://github.com/Egritosgroup/AspNetCoreAutoUpdater">AspNetCoreAutoUpdater</a>.</p>
+        <p>
+            <h4>Application Versions</h4>
+            Current Version : @currentVersion
+            <br />
+            Latest Version : @nextVersion
+        </p>
+        <hr />
+        @if (currentVersion < nextVersion)
+        {
+            <p>
+                <a href='/Updater/CompleteUpdate/@nextVersion'>Let's Update the App to @nextVersion</a>
+            </p>
+        }
+        <hr />
+    </div>

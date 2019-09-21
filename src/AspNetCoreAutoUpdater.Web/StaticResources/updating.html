@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Updating...</title>
+    <link type="text/css" rel="stylesheet" href="/updating/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/updating/animate.min.css">
+    <link type="text/css" rel="stylesheet" href="/updating/metalgrey-dropdown_label.css">
+    <style>
+        .loader06::before {
+            border: 4px solid rgba(255,255,255,0.5);
+            width: 137.2px;
+            height: 137.2px; /*11,2 px extra*/
+        }
+
+        .loader06::after {
+            border: 4px solid #fff;
+            width: 126px;
+            height: 126px;
+        }
+
+        .loader06 {
+            width: 126px;
+            height: 126px;
+        }
+    </style>
+
+    <script>
+        // Set the date we're counting down to
+        var nextVersion = getParameterByName('v');
+        var countDownMessage = "Working to update to version " + nextVersion;
+        var countNullProgressInfo = 0;
+
+        // Update the count down every 1 second
+        var refreshIntervalId = setInterval(function () {
+
+            //$("#countdown").html(countDownMessage);
+
+            httpGetAsync("Updater/GetProgressInfo", function (resp) {
+                console.log(resp);
+
+                var htmlElem = document.getElementById("countdown");
+
+                if (resp.progressInfo == null)
+                    countNullProgressInfo++;
+
+                if (resp.progressInfo && resp.progressInfo.currentFile)
+                    htmlElem.innerHTML = `Αρχείο ${resp.progressInfo.currentFileIndex + 1} από ${resp.progressInfo.totalFiles}
+                                                   (${resp.progressInfo.currentFile} - ${Math.round(resp.progressInfo.value)}%)`;
+
+                if (nextVersion == resp.version || countNullProgressInfo == 5) {
+                    clearInterval(refreshIntervalId);
+                    htmlElem.innerHTML = "Μεταφορά στην Εφαρμογή...";
+                    window.location = "/";
+                }
+            });
+
+        }, 1000);
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        function httpGetAsync(theUrl, callback)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() { 
+                if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                    if (xmlHttp.responseText)
+                        callback(JSON.parse(xmlHttp.responseText));
+                    else
+                        callback();
+                }
+                    
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+            xmlHttp.send(null);
+        }
+
+    </script>
+</head>
+<body>
+    <!-- Error wrapper -->
+    <div class="error-container text-center">
+        <img src="updating/maintenance.png" class="error_img" alt="maintenance" />
+        <div class="x4 text-light">Ενημέρωση εφαρμογής.</div>
+        <h3 class="text-light m-b-20">Δουλεύουμε πολύ σκληρά για να προσθέσουμε νέα χαρακτηριστικά και να βελτιώσουμε τη φιλικότητα της εφαρμογής σας.</h3>
+        <h4 id="countdown"></h4>
+        <div class="row-fluid">
+            <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
+                <div style="padding:30px;">
+                    <div class="loader06 text-white"></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="float-left">
+                © 2018 Created by <a href="http://egritosgroup.gr" target="_blank">egritosgroup.gr</a>.
+            </div>
+            <div class="float-right">
+                <div class="label label-info">Version: 1.1.1</div>
+            </div>
+        </div>
+    </div>
+    <!-- /error wrapper -->
+</body>
+</html>

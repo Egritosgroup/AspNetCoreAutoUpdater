@@ -6,7 +6,7 @@ namespace AspNetCoreAutoUpdater
 {
     public static class UpdaterExtensions
     {
-        public static IServiceCollection UseFtpUpdater(this IServiceCollection services, Action<HttpAppUpdaterOptions> setupAction)
+        public static IServiceCollection UseHttpUpdater(this IServiceCollection services, Action<HttpAppUpdaterOptions> setupAction)
         {
             var opts = new HttpAppUpdaterOptions();
             setupAction.Invoke(opts);

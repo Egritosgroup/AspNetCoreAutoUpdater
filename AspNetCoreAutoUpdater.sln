@@ -15,6 +15,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreAutoUpdater.IISHa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreAutoUpdater.HttpDownloader", "src\AspNetCoreAutoUpdater.HttpDownloader\AspNetCoreAutoUpdater.HttpDownloader.csproj", "{EC095779-B67E-451D-9F4A-C5DB5475F9EA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CCD35FE1-3AA8-48DA-9D78-EC2601943B2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreAutoUpdater.Tests", "tests\AspNetCoreAutoUpdater.Tests\AspNetCoreAutoUpdater.Tests.csproj", "{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication1", "samlpes\SampleApplication1\SampleApplication1.csproj", "{0EB2F3E7-82C6-4487-A2CF-02C417B0250D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreAutoUpdater.Web", "src\AspNetCoreAutoUpdater.Web\AspNetCoreAutoUpdater.Web.csproj", "{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +45,18 @@ Global
 		{EC095779-B67E-451D-9F4A-C5DB5475F9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC095779-B67E-451D-9F4A-C5DB5475F9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC095779-B67E-451D-9F4A-C5DB5475F9EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB2F3E7-82C6-4487-A2CF-02C417B0250D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB2F3E7-82C6-4487-A2CF-02C417B0250D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB2F3E7-82C6-4487-A2CF-02C417B0250D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB2F3E7-82C6-4487-A2CF-02C417B0250D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +66,9 @@ Global
 		{CABBA8AC-02A2-4EBF-936E-61E01D32CFB3} = {EEE75F08-AA79-4A84-8778-CAD7CB512238}
 		{E6D8CDB5-A687-4AC9-8B0A-D3019D5E2177} = {EEE75F08-AA79-4A84-8778-CAD7CB512238}
 		{EC095779-B67E-451D-9F4A-C5DB5475F9EA} = {EEE75F08-AA79-4A84-8778-CAD7CB512238}
+		{2FBB5DB8-FB10-4525-A34F-6D50D3E6C741} = {CCD35FE1-3AA8-48DA-9D78-EC2601943B2E}
+		{0EB2F3E7-82C6-4487-A2CF-02C417B0250D} = {716A5C43-8B4E-4620-9448-00718903CA86}
+		{6BB744D9-A7A3-41ED-AFB4-B48AFB3201B6} = {EEE75F08-AA79-4A84-8778-CAD7CB512238}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB5D9178-5C5A-476A-BB7D-A416B18F5F5E}
