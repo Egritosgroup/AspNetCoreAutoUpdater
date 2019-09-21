@@ -16,8 +16,8 @@ namespace AspNetCoreAutoUpdater.IISHandler
             //di = new DirectoryInfo(@"\\egs02\wwwroot\kliseis.demo.egritosgroup.gr"); gia test
             pathLogFile = Path.Combine(di.FullName, @"Updater.log");
 
-            AppendInLog(pathLogFile, $"-----------EgritosGroup.AspNetCore.Updater Started ----{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}");
-            AppendInLog(pathLogFile, $"-----------EgritosGroup.AspNetCore.Updater Started 2 ----{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}");
+            AppendInLog(pathLogFile, $"-----------AspNetCoreAutoUpdater.IISHandler Started ----{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}");
+            AppendInLog(pathLogFile, $"-----------AspNetCoreAutoUpdater.IISHandler Started 2 ----{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}");
 
             var settingsFile = Path.Combine(di.FullName, "UpdateSettings.json");
             if (File.Exists(settingsFile))
@@ -40,53 +40,6 @@ namespace AspNetCoreAutoUpdater.IISHandler
                 {
                     AppendInLog(pathLogFile, $"-----------Failed updating by settings ({ex.StackTrace}) ----{DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")}");
                 }
-            }
-
-            try
-            {
-                if (FileExists(di.FullName, "EgritosGroup.Auth.Server.dll"))
-                {
-                    UpdateBySettings(new UpdateSettings() { AppEntryDll = "EgritosGroup.Auth.Server.dll", DirectoryName = Path.Combine(di.FullName, "updates", "EgritosGroup.Auth.Server") });
-
-                    //var updaterPath = Path.Combine(di.FullName, "updates", "EgritosGroup.Auth.Server");
-                    ////Now Create all of the directories
-                    //foreach (string dirPath in Directory.GetDirectories(updaterPath, "*", SearchOption.AllDirectories))
-                    //    Directory.CreateDirectory(dirPath.Replace(updaterPath, di.FullName));
-                    ////Copy all the files & Replaces any files with the same name
-                    //foreach (string newPath in Directory.GetFiles(updaterPath, "*.*", SearchOption.AllDirectories))
-                    //    File.Copy(newPath, newPath.Replace(updaterPath, di.FullName), true);
-
-                    //var webconfig = Path.Combine(di.FullName, "web.config");
-                    //_replaceNetCoreDllInWebConfig(webconfig, "EgritosGroup.AspNetCore.Updater.dll", "EgritosGroup.Auth.Server.dll");
-                }
-                else if (FileExists(di.FullName, "EgritosGroup.Finance.Core.HttpServer.dll"))
-                {
-                    UpdateBySettings(new UpdateSettings() { AppEntryDll = "EgritosGroup.Finance.Core.HttpServer.dll", DirectoryName = Path.Combine(di.FullName, "updates", "EgritosGroup.Finance.Core.HttpServer") });
-                    //    var updaterPath = Path.Combine(di.FullName, "updates", "EgritosGroup.Finance.Api");
-                    //    //Now Create all of the directories
-                    //    foreach (string dirPath in Directory.GetDirectories(updaterPath, "*", SearchOption.AllDirectories))
-                    //        Directory.CreateDirectory(dirPath.Replace(updaterPath, di.FullName));
-                    //    //Copy all the files & Replaces any files with the same name
-                    //    foreach (string newPath in Directory.GetFiles(updaterPath, "*.*", SearchOption.AllDirectories))
-                    //        try
-                    //        {
-                    //            File.Copy(newPath, newPath.Replace(updaterPath, di.FullName), true);
-                    //        }
-                    //        catch (Exception ex1)
-                    //        {
-                    //            AppendInLog(pathLogFile, $"Cannot copy file {newPath} {ex1.Message}");
-                    //            AppendInLog(pathLogFile, ex1.StackTrace);
-                    //        }
-
-
-                    //    var webconfig = Path.Combine(di.FullName, "web.config");
-                    //    _replaceNetCoreDllInWebConfig(webconfig, "EgritosGroup.AspNetCore.Updater.dll", "EgritosGroup.Finance.Core.HttpServer.dll");
-                }
-            }
-            catch (Exception e)
-            {
-                AppendInLog(pathLogFile, e.Message);
-                AppendInLog(pathLogFile, e.StackTrace);
             }
 
         }
@@ -150,13 +103,13 @@ namespace AspNetCoreAutoUpdater.IISHandler
 
 
             var webconfig = Path.Combine(di.FullName, "web.config");
-            _replaceNetCoreDllInWebConfig(webconfig, "EgritosGroup.AspNetCore.Updater.dll", settings.AppEntryDll);
+            _replaceNetCoreDllInWebConfig(webconfig, "AspNetCoreAutoUpdater.IISHandler.dll", settings.AppEntryDll);
         }
 
         private static void _CleanFiles(UpdateSettings settings)
         {
             var fileInfo = new FileInfo(typeof(Program).Assembly.Location);
-            //fileInfo = new FileInfo(@"\\egs02\wwwroot\kliseis.demo.egritosgroup.gr\EgritosGroup.AspNetCore.Updater.dll"); gia test
+            //fileInfo = new FileInfo(@"\\egs02\wwwroot\kliseis.demo.egritosgroup.gr\AspNetCoreAutoUpdater.IISHandler.dll"); gia test
             var appDi = fileInfo.Directory;
             //var updaterPath = UnzipDirPath;// Path.Combine(appDi.FullName, "updates", UnzipDirPath);
             var extensions = new string[] { ".dll", ".pdb" };
@@ -165,8 +118,8 @@ namespace AspNetCoreAutoUpdater.IISHandler
                                  .ToArray();
 
             var keepFiles = new string[] {
-                "EgritosGroup.AspNetCore.Updater.dll", "EgritosGroup.AspNetCore.Updater.pdb", "Updater.log",
-                "EgritosGroup.AspNetCore.Updater.deps.json", "EgritosGroup.AspNetCore.Updater.runtimeconfig.json",
+                "AspNetCoreAutoUpdater.IISHandler.dll", "AspNetCoreAutoUpdater.IISHandler.pdb", "Updater.log",
+                "AspNetCoreAutoUpdater.IISHandler.deps.json", "AspNetCoreAutoUpdater.IISHandler.runtimeconfig.json",
             };
 
             foreach (var file in removeFiles)

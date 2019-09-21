@@ -36,8 +36,9 @@ namespace SampleApplication1.Controllers
             {
                 try
                 {
-
                     var t = _appUpdaterService.BeginUpdateProcessAsync(versionNumber, () => _updaterCommunicationService.ShutdownApp());
+                    Task.Factory.StartNew(() => t.GetAwaiter().GetResult());
+
                     //var cntxt = await _updater.DownloadFilesAsync(versionNumber);
                     //var t = _updater.CompleteUpdateAsync(() => { Program.Shutdown(); });
                 }

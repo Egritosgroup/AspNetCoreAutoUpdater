@@ -65,7 +65,7 @@ namespace SampleApplication1
                 //opts.SecondaryFiles = new List<UpdaterFileInfo>();
 
                 //HTTP Settings
-                opts.HttpDownloadUrl = "https://raw.githubusercontent.com/Egritosgroup/AspNetCoreAutoUpdater/master/samples/versions/";
+                opts.HttpDownloadUrl = "https://egritosgroup.gr/static/AutoUpdater/SampleApplication1/";
             });
 
             services.AddAspNetCoreAutoUpdaterUI();

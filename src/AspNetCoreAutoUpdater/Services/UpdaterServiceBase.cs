@@ -90,7 +90,7 @@ namespace AspNetCoreAutoUpdater
             //do update
             if (CurrentOS == OSPlatform.Windows)
             {
-                using (var s = this.GetType().Assembly.GetManifestResourceStream("EgritosGroup.ConsoleClient.Resources.EgritosGroup.AspNetCore.Updater.zip"))
+                using (var s = this.GetType().Assembly.GetManifestResourceStream("AspNetCoreAutoUpdater.Resources.AspNetCoreAutoUpdater.IISHandler.zip"))
                 {
                     ExtractFromStream(s, fileInfo.Directory.FullName);
                     //using (var archive = new ZipArchive(s))
@@ -104,7 +104,7 @@ namespace AspNetCoreAutoUpdater
                 }
                 var webconfig = Path.Combine(fileInfo.Directory.FullName, "web.config");
                 if (File.Exists(webconfig))
-                    _replaceNetCoreDllInWebConfig(webconfig, _options.AppEntryDll, "EgritosGroup.AspNetCore.Updater.dll");
+                    _replaceNetCoreDllInWebConfig(webconfig, _options.AppEntryDll, "AspNetCoreAutoUpdater.IISHandler.dll");
             }
             else //OSPlatform.Linux
             {

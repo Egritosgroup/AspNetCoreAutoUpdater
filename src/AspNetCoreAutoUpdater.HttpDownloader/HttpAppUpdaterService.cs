@@ -48,7 +48,7 @@ namespace AspNetCoreAutoUpdater.HttpDownloader
                 LogError(e.GetAllMessages() + e.StackTrace);
                 //return new DownloadContext();
                 //content = e.GetAllMessages() + e.StackTrace;
-                throw new Exception("Error in Dowloading files from ftp.", e);
+                throw new Exception("Error in Dowloading files from http.", e);
             }
         }
 
